@@ -8,7 +8,7 @@ import {
   Binary,
   Link as LinkIcon,
   FileText,
-  File, // Replacing FileHexagon
+  File,
   FileCog,
   Presentation,
   FileType,
@@ -16,9 +16,9 @@ import {
   Hash,
   Quote,
   CreditCard,
-  Image, // Replacing ImageSquare
+  Image,
   FileCode2,
-  FileEdit, // Replacing FileEditing
+  FileEdit,
   FileDigit,
   QrCode,
   ScanLine,
@@ -81,7 +81,7 @@ export const tools = [
     title: "UTF8 Encode",
     description: "Plain text to UTF8",
     path: "/tools/utf8-encode",
-    icon: File // Changed from FileHexagon
+    icon: File
   },
   {
     title: "UTF8 Decode",
