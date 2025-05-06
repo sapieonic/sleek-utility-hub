@@ -9,6 +9,7 @@ import { Code, Binary, FileCode, Newspaper, ArrowBigDownDash } from "lucide-reac
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [activeCategory, setActiveCategory] = useState<"all" | "formatters" | "encoders" | "generators" | "converters">("all");
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -21,7 +22,7 @@ const Index = () => {
         <div className="container">
           <HeroSection onSearch={handleSearch} />
           
-          <Tabs defaultValue="all" className="my-8">
+          <Tabs defaultValue="all" className="my-8" onValueChange={(value) => setActiveCategory(value as any)}>
             <div className="flex justify-center mb-6">
               <TabsList>
                 <TabsTrigger value="all" className="flex items-center gap-2">
@@ -48,23 +49,23 @@ const Index = () => {
             </div>
             
             <TabsContent value="all">
-              <ToolGrid />
+              <ToolGrid category="all" searchQuery={searchQuery} />
             </TabsContent>
             <TabsContent value="formatters">
               <p className="text-center text-muted-foreground mb-4">Formatter tools for various file formats</p>
-              <ToolGrid />
+              <ToolGrid category="formatters" searchQuery={searchQuery} />
             </TabsContent>
             <TabsContent value="encoders">
               <p className="text-center text-muted-foreground mb-4">Tools for encoding and decoding text</p>
-              <ToolGrid />
+              <ToolGrid category="encoders" searchQuery={searchQuery} />
             </TabsContent>
             <TabsContent value="generators">
               <p className="text-center text-muted-foreground mb-4">Generate random data and more</p>
-              <ToolGrid />
+              <ToolGrid category="generators" searchQuery={searchQuery} />
             </TabsContent>
             <TabsContent value="converters">
               <p className="text-center text-muted-foreground mb-4">Convert between various formats</p>
-              <ToolGrid />
+              <ToolGrid category="converters" searchQuery={searchQuery} />
             </TabsContent>
           </Tabs>
         </div>
