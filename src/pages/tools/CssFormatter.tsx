@@ -4,13 +4,13 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeftRight, Copy, Check, FileType } from "lucide-react";
+import { ArrowLeftRight, Copy, Check, Css } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from 'react-router-dom';
 import CodeMirror from '@uiw/react-codemirror';
-import { javascript } from '@codemirror/lang-javascript';
+import { css } from '@codemirror/lang-css';
 
-const JsFormatter = () => {
+const CssFormatter = () => {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   const [copied, setCopied] = useState(false);
@@ -18,37 +18,54 @@ const JsFormatter = () => {
 
   const handleFormat = () => {
     try {
-      // Parse the JavaScript code
-      const parsed = eval(`(${input})`);
+      // Function to format CSS
+      const formatCSS = (cssString: string) => {
+        // Remove extra whitespace and line breaks
+        let formatted = cssString.trim();
+        
+        // Add line breaks after specific characters
+        formatted = formatted.replace(/([{}]);/g, '$1;\n');
+        formatted = formatted.replace(/([{}])/g, '$1\n');
+        formatted = formatted.replace(/;(?!\\n)/g, ';\n');
+        
+        // Add indentation
+        const lines = formatted.split('\n');
+        let indentLevel = 0;
+        const indentSize = 2;
+        
+        for (let i = 0; i < lines.length; i++) {
+          const line = lines[i].trim();
+          
+          if (line.includes('}')) {
+            indentLevel = Math.max(0, indentLevel - 1);
+          }
+          
+          if (line) {
+            lines[i] = ' '.repeat(indentLevel * indentSize) + line;
+          }
+          
+          if (line.includes('{')) {
+            indentLevel++;
+          }
+        }
+        
+        return lines.join('\n');
+      };
       
-      // Format with proper indentation
-      const formatted = JSON.stringify(parsed, null, 2);
-      
+      const formatted = formatCSS(input);
       setOutput(formatted);
       toast({
-        title: "JavaScript formatted successfully",
-        description: "Your JavaScript has been formatted with proper indentation.",
+        title: "CSS formatted successfully",
+        description: "Your CSS has been formatted with proper indentation.",
       });
     } catch (error) {
-      try {
-        // Try as just a JSON string if it's not valid JS
-        const parsed = JSON.parse(input);
-        const formatted = JSON.stringify(parsed, null, 2);
-        setOutput(formatted);
+      if (error instanceof Error) {
+        setOutput(`Error: ${error.message}`);
         toast({
-          title: "JavaScript formatted successfully",
-          description: "Your code was parsed as JSON and formatted with proper indentation.",
+          variant: "destructive",
+          title: "Invalid CSS",
+          description: error.message,
         });
-      } catch {
-        // If both attempts fail, show error
-        if (error instanceof Error) {
-          setOutput(`Error: ${error.message}`);
-          toast({
-            variant: "destructive",
-            title: "Invalid JavaScript",
-            description: error.message,
-          });
-        }
       }
     }
   };
@@ -59,7 +76,7 @@ const JsFormatter = () => {
       setCopied(true);
       toast({
         title: "Copied to clipboard",
-        description: "The formatted code has been copied to your clipboard.",
+        description: "The formatted CSS has been copied to your clipboard.",
       });
       setTimeout(() => setCopied(false), 2000);
     }
@@ -74,31 +91,31 @@ const JsFormatter = () => {
             <ArrowLeftRight className="h-4 w-4" />
             Back to all tools
           </Link>
-          <h1 className="text-3xl font-bold mb-2">JavaScript Formatter</h1>
-          <p className="text-muted-foreground">Format and beautify your JavaScript code with proper indentation.</p>
+          <h1 className="text-3xl font-bold mb-2">CSS Formatter</h1>
+          <p className="text-muted-foreground">Format and beautify your CSS code with proper indentation.</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <FileType className="h-5 w-5" />
-                Input JavaScript
+                <Css className="h-5 w-5" />
+                Input CSS
               </CardTitle>
               <CardDescription>
-                Paste your unformatted JavaScript here
+                Paste your unformatted CSS here
               </CardDescription>
             </CardHeader>
             <CardContent>
               <CodeMirror
                 value={input}
                 height="300px"
-                extensions={[javascript()]}
+                extensions={[css()]}
                 onChange={(value) => setInput(value)}
                 className="border rounded-md"
               />
               <div className="flex justify-end mt-4">
-                <Button onClick={handleFormat}>Format JavaScript</Button>
+                <Button onClick={handleFormat}>Format CSS</Button>
               </div>
             </CardContent>
           </Card>
@@ -106,18 +123,18 @@ const JsFormatter = () => {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <FileType className="h-5 w-5" />
+                <Css className="h-5 w-5" />
                 Formatted Output
               </CardTitle>
               <CardDescription>
-                Your beautified JavaScript will appear here
+                Your beautified CSS will appear here
               </CardDescription>
             </CardHeader>
             <CardContent>
               <CodeMirror
                 value={output}
                 height="300px"
-                extensions={[javascript()]}
+                extensions={[css()]}
                 editable={false}
                 className="border rounded-md"
               />
@@ -150,4 +167,4 @@ const JsFormatter = () => {
   );
 };
 
-export default JsFormatter;
+export default CssFormatter;

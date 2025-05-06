@@ -15,6 +15,8 @@ import UTF8Decode from "./pages/tools/UTF8Decode";
 import XmlDecode from "./pages/tools/XmlDecode";
 import JsFormatter from "./pages/tools/JsFormatter";
 import HtmlFormatter from "./pages/tools/HtmlFormatter";
+import CssFormatter from "./pages/tools/CssFormatter";
+import SqlFormatter from "./pages/tools/SqlFormatter";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -37,6 +39,8 @@ const App = () => (
           <Route path="/tools/xml-decode" element={<XmlDecode />} />
           <Route path="/tools/js-formatter" element={<JsFormatter />} />
           <Route path="/tools/html-formatter" element={<HtmlFormatter />} />
+          <Route path="/tools/css-formatter" element={<CssFormatter />} />
+          <Route path="/tools/sql-formatter" element={<SqlFormatter />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

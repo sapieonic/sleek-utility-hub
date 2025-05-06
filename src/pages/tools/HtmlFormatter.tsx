@@ -3,11 +3,12 @@ import React, { useState } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { ArrowLeftRight, Copy, Check, FileStack } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from 'react-router-dom';
+import CodeMirror from '@uiw/react-codemirror';
+import { html } from '@codemirror/lang-html';
 
 const HtmlFormatter = () => {
   const [input, setInput] = useState('');
@@ -133,11 +134,12 @@ const HtmlFormatter = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Textarea 
-                className="min-h-[300px] font-mono"
-                placeholder='<div><p>Example</p></div>'
+              <CodeMirror
                 value={input}
-                onChange={(e) => setInput(e.target.value)}
+                height="300px"
+                extensions={[html()]}
+                onChange={(value) => setInput(value)}
+                className="border rounded-md"
               />
               <div className="flex justify-end mt-4">
                 <Button onClick={handleFormat}>Format HTML</Button>
@@ -156,10 +158,12 @@ const HtmlFormatter = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Textarea 
-                className="min-h-[300px] font-mono"
+              <CodeMirror
                 value={output}
-                readOnly
+                height="300px"
+                extensions={[html()]}
+                editable={false}
+                className="border rounded-md"
               />
               <div className="flex justify-end mt-4">
                 <Button 
