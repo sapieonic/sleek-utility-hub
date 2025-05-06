@@ -8,7 +8,7 @@ import {
   Binary,
   Link as LinkIcon,
   FileText,
-  FileHexagon,
+  File, // Replacing FileHexagon
   FileCog,
   Presentation,
   FileType,
@@ -16,9 +16,9 @@ import {
   Hash,
   Quote,
   CreditCard,
-  ImageSquare,
+  Image, // Replacing ImageSquare
   FileCode2,
-  FileEditing,
+  FileEdit, // Replacing FileEditing
   FileDigit,
   QrCode,
   ScanLine,
@@ -74,7 +74,7 @@ export function ToolGrid() {
       title: "UTF8 Encode",
       description: "Plain text to UTF8",
       path: "/tools/utf8-encode",
-      icon: FileHexagon
+      icon: File // Changed from FileHexagon
     },
     {
       title: "UTF8 Decode",
@@ -146,7 +146,7 @@ export function ToolGrid() {
       title: "Placeholder Image Generator",
       description: "Generate placeholder images",
       path: "/tools/placeholder-image-generator",
-      icon: ImageSquare
+      icon: Image // Changed from ImageSquare
     },
     {
       title: "HTML to Markdown Converter",
@@ -158,7 +158,7 @@ export function ToolGrid() {
       title: "Markdown Editor",
       description: "GFM Markdown and WYSIWYG Editor",
       path: "/tools/markdown-editor",
-      icon: FileEditing
+      icon: FileEdit // Changed from FileEditing
     },
     {
       title: "Diff Checker",
