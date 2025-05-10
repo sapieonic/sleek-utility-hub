@@ -1,10 +1,9 @@
-
 import React, { useState } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeftRight, Copy, Check, Css } from "lucide-react";
+import { ArrowLeftRight, Copy, Check, FileCode } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from 'react-router-dom';
 import CodeMirror from '@uiw/react-codemirror';
@@ -99,7 +98,7 @@ const CssFormatter = () => {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Css className="h-5 w-5" />
+                <FileCode className="h-5 w-5" />
                 Input CSS
               </CardTitle>
               <CardDescription>
@@ -123,7 +122,7 @@ const CssFormatter = () => {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Css className="h-5 w-5" />
+                <FileCode className="h-5 w-5" />
                 Formatted Output
               </CardTitle>
               <CardDescription>
