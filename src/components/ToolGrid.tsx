@@ -34,6 +34,22 @@ export const TOOL_CATEGORIES = {
   converters: ["html-to-markdown-converter", "html-to-pdf-converter"]
 };
 
+// Define which tools are fully implemented
+const IMPLEMENTED_TOOLS = [
+  "json-formatter", 
+  "base64-encode", 
+  "base64-decode", 
+  "url-encode", 
+  "url-decode", 
+  "utf8-encode", 
+  "utf8-decode", 
+  "xml-decode", 
+  "js-formatter", 
+  "html-formatter", 
+  "css-formatter", 
+  "sql-formatter"
+];
+
 export const tools = [
   {
     title: "Code Share",
@@ -235,16 +251,23 @@ export function ToolGrid({ category = "all", searchQuery = "" }: ToolGridProps) 
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {filteredTools.map((tool, index) => (
-        <div key={tool.path} className="opacity-0 animate-fade-in" style={{ animationDelay: `${index * 50}ms`, animationFillMode: 'forwards' }}>
-          <ToolCard
-            icon={tool.icon}
-            title={tool.title}
-            description={tool.description}
-            path={tool.path}
-          />
-        </div>
-      ))}
+      {filteredTools.map((tool, index) => {
+        // Check if the tool is implemented
+        const toolId = tool.path.split('/tools/')[1];
+        const isImplemented = IMPLEMENTED_TOOLS.includes(toolId);
+        
+        return (
+          <div key={tool.path} className="opacity-0 animate-fade-in" style={{ animationDelay: `${index * 50}ms`, animationFillMode: 'forwards' }}>
+            <ToolCard
+              icon={tool.icon}
+              title={tool.title}
+              description={tool.description}
+              path={tool.path}
+              inProgress={!isImplemented}
+            />
+          </div>
+        );
+      })}
       {filteredTools.length === 0 && (
         <div className="col-span-4 text-center py-12">
           <p className="text-muted-foreground">No tools found matching your criteria.</p>
