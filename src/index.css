@@ -75,12 +75,46 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Add responsive font sizing */
+  html {
+    font-size: 16px;
+  }
+  
+  @media (max-width: 640px) {
+    html {
+      font-size: 15px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    html {
+      font-size: 14px;
+    }
+  }
 }
 
+/* Update tool card for better responsiveness */
 .tool-card {
   @apply border rounded-xl shadow-sm transition-all duration-300 ease-in-out hover:shadow-md hover:scale-[1.02] overflow-hidden bg-card text-card-foreground;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.tool-card > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .tool-icon {
-  @apply text-primary h-5 w-5;
+  @apply text-primary h-4 w-4 sm:h-5 sm:w-5;
+}
+
+/* Make HoverCard content responsive */
+@media (max-width: 640px) {
+  .hover-card-content {
+    max-width: calc(100vw - 2rem) !important;
+  }
 }
