@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Index from "./pages/Index";
 import JsonFormatter from "./pages/tools/JsonFormatter";
 import Base64Encode from "./pages/tools/Base64Encode";
@@ -24,6 +25,10 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <Helmet>
+        <title>LLM Utility Hub - Developer Tools for Text Processing</title>
+        <meta name="description" content="Free online developer tools for formatting, encoding, decoding, and converting text. JSON, HTML, CSS formatters, Base64, URL encoders/decoders, and more." />
+      </Helmet>
       <Toaster />
       <Sonner />
       <BrowserRouter>

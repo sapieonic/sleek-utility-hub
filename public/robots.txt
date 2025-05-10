@@ -1,14 +1,7 @@
-User-agent: Googlebot
-Allow: /
 
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
+# Allow all robots complete access
 User-agent: *
 Allow: /
+
+# Sitemap location
+Sitemap: https://hub.llm-util.com/sitemap.xml
