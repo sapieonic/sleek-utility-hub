@@ -62,12 +62,32 @@ Visit [https://hub.llm-util.com/](https://hub.llm-util.com/) to try it out!
 | **Placeholder Image Generator** | Generate placeholder images | In Progress |
 | **QR Code Generator** | Generate QR codes from text | In Progress |
 
-### Converters (Coming Soon)
+### Converters (4 tools)
 
 | Tool | Description | Status |
 |------|-------------|--------|
-| **HTML to Markdown** | Convert HTML markup to Markdown | In Progress |
-| **HTML to PDF** | Convert HTML to PDF documents | In Progress |
+| **HTML to Markdown** | Convert HTML markup to Markdown using Turndown | Available |
+| **HTML to PDF** | Convert HTML to PDF documents with html2pdf.js | Available |
+| **Markdown to HTML** | Convert Markdown to styled HTML with GFM support | Available |
+| **Markdown to PDF** | Convert Markdown to PDF with live preview using react-markdown | Available |
+
+### Utilities (4 tools)
+
+| Tool | Description | Status |
+|------|-------------|--------|
+| **Diff Checker** | Compare text with line/word/char modes, ignore whitespace/case options | Available |
+| **Markdown Editor** | GFM Markdown editor with split/edit/preview modes, download as .md or .html | Available |
+| **String Utilities** | 30+ operations: case conversion, text transforms, extract emails/URLs/numbers | Available |
+
+### Generators (Coming Soon)
+
+| Tool | Description | Status |
+|------|-------------|--------|
+| **Test Data Generator** | Generate fake/test data for development | In Progress |
+| **Lorem Ipsum Generator** | Generate placeholder text | In Progress |
+| **Credit Card Generator** | Generate test credit card numbers | In Progress |
+| **Placeholder Image Generator** | Generate placeholder images | In Progress |
+| **QR Code Generator** | Generate QR codes from text | In Progress |
 
 ### Additional Tools (Coming Soon)
 
@@ -77,11 +97,8 @@ Visit [https://hub.llm-util.com/](https://hub.llm-util.com/) to try it out!
 | **JSON Decoder** | Decode JSON to array format | In Progress |
 | **JS Compressor** | Minify JavaScript code | In Progress |
 | **CSS Compressor** | Minify CSS stylesheets | In Progress |
-| **Markdown Editor** | GFM Markdown with WYSIWYG editing | In Progress |
-| **Diff Checker** | Compare differences between files | In Progress |
 | **QR Code Scanner** | Scan QR codes via camera or file upload | In Progress |
 | **Sorting List** | Sort lists alphabetically or numerically | In Progress |
-| **String Utilities** | Convert, remove, replace string operations | In Progress |
 
 ## Tech Stack
 
@@ -117,6 +134,18 @@ Visit [https://hub.llm-util.com/](https://hub.llm-util.com/) to try it out!
 | [React Hook Form](https://react-hook-form.com/) | Form handling |
 | [Zod](https://zod.dev/) | Schema validation |
 
+### Conversion & Processing
+
+| Technology | Purpose |
+|------------|---------|
+| [Turndown](https://github.com/mixmark-io/turndown) | HTML to Markdown conversion |
+| [html2pdf.js](https://github.com/eKoopmans/html2pdf.js) | Client-side PDF generation |
+| [marked](https://marked.js.org/) | Markdown parsing |
+| [react-markdown](https://github.com/remarkjs/react-markdown) | Markdown rendering |
+| [remark-gfm](https://github.com/remarkjs/remark-gfm) | GitHub Flavored Markdown support |
+| [diff](https://github.com/kpdecker/jsdiff) | Text comparison |
+| [@uiw/react-md-editor](https://uiwjs.github.io/react-md-editor/) | Markdown WYSIWYG editor |
+
 ### Additional Libraries
 
 | Technology | Purpose |
@@ -126,6 +155,7 @@ Visit [https://hub.llm-util.com/](https://hub.llm-util.com/) to try it out!
 | [Sonner](https://sonner.emilkowal.ski/) | Toast notifications |
 | [react-helmet-async](https://github.com/staylor/react-helmet-async) | SEO meta tags |
 | [date-fns](https://date-fns.org/) | Date utilities |
+| [@tailwindcss/typography](https://tailwindcss.com/docs/typography-plugin) | Prose styling for Markdown |
 
 ## Getting Started
 
@@ -191,6 +221,7 @@ sleek-utility-hub/
 │   │   ├── HeroSection.tsx     # Landing section with animated search
 │   │   ├── ToolCard.tsx        # Individual tool card component
 │   │   ├── ToolGrid.tsx        # Grid layout with category filtering
+│   │   ├── CategorySection.tsx # Category-based tool sections
 │   │   ├── SearchTools.tsx     # Search input component
 │   │   └── ThemeToggle.tsx     # Dark/light mode toggle
 │   │
@@ -207,7 +238,14 @@ sleek-utility-hub/
 │   │   │   ├── UrlDecode.tsx
 │   │   │   ├── UTF8Encode.tsx
 │   │   │   ├── UTF8Decode.tsx
-│   │   │   └── XmlDecode.tsx
+│   │   │   ├── XmlDecode.tsx
+│   │   │   ├── HtmlToMarkdown.tsx
+│   │   │   ├── HtmlToPdf.tsx
+│   │   │   ├── MarkdownToHtml.tsx
+│   │   │   ├── MarkdownToPdf.tsx
+│   │   │   ├── DiffChecker.tsx
+│   │   │   ├── MarkdownEditor.tsx
+│   │   │   └── StringUtilities.tsx
 │   │   ├── Index.tsx           # Home page with tool discovery
 │   │   └── NotFound.tsx        # 404 error page
 │   │
