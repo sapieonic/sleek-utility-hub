@@ -21,6 +21,11 @@ import CssFormatter from "./pages/tools/CssFormatter";
 import SqlFormatter from "./pages/tools/SqlFormatter";
 import HtmlToMarkdown from "./pages/tools/HtmlToMarkdown";
 import HtmlToPdf from "./pages/tools/HtmlToPdf";
+import DiffChecker from "./pages/tools/DiffChecker";
+import MarkdownEditor from "./pages/tools/MarkdownEditor";
+import StringUtilities from "./pages/tools/StringUtilities";
+import MarkdownToHtml from "./pages/tools/MarkdownToHtml";
+import MarkdownToPdf from "./pages/tools/MarkdownToPdf";
 import NotFound from "./pages/NotFound";
 
 const App = () => {
@@ -53,6 +58,11 @@ const App = () => {
             <Route path="/tools/sql-formatter" element={<SqlFormatter />} />
             <Route path="/tools/html-to-markdown-converter" element={<HtmlToMarkdown />} />
             <Route path="/tools/html-to-pdf-converter" element={<HtmlToPdf />} />
+            <Route path="/tools/diff-checker" element={<DiffChecker />} />
+            <Route path="/tools/markdown-editor" element={<MarkdownEditor />} />
+            <Route path="/tools/string-utilities" element={<StringUtilities />} />
+            <Route path="/tools/markdown-to-html-converter" element={<MarkdownToHtml />} />
+            <Route path="/tools/markdown-to-pdf-converter" element={<MarkdownToPdf />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

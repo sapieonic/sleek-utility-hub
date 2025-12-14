@@ -30,6 +30,12 @@ export function CategorySection({
   const implementedCount = tools.filter(t => t.isImplemented).length;
   const totalCount = tools.length;
 
+  // Sort tools: implemented first, then not implemented
+  const sortedTools = [...tools].sort((a, b) => {
+    if (a.isImplemented === b.isImplemented) return 0;
+    return a.isImplemented ? -1 : 1;
+  });
+
   return (
     <section className="mb-10 sm:mb-12">
       <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
@@ -48,7 +54,7 @@ export function CategorySection({
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-        {tools.map((tool, index) => (
+        {sortedTools.map((tool, index) => (
           <div
             key={tool.path}
             className="opacity-0 animate-fade-in"

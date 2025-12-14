@@ -32,7 +32,7 @@ export const TOOL_CATEGORIES = {
   formatters: ["json-formatter", "js-formatter", "html-formatter", "css-formatter", "sql-formatter"],
   encoders: ["base64-encode", "base64-decode", "url-encode", "url-decode", "utf8-encode", "utf8-decode", "xml-decode"],
   generators: ["test-data-generator", "lorem-ipsum-generator", "credit-card-generator", "placeholder-image-generator", "qr-code-generator"],
-  converters: ["html-to-markdown-converter", "html-to-pdf-converter"],
+  converters: ["html-to-markdown-converter", "html-to-pdf-converter", "markdown-to-html-converter", "markdown-to-pdf-converter"],
   utilities: ["code-share", "json-decoder", "js-compressor", "css-compressor", "markdown-editor", "diff-checker", "qr-code-scanner", "sorting-list", "string-utilities"]
 };
 
@@ -51,7 +51,12 @@ export const IMPLEMENTED_TOOLS = [
   "css-formatter",
   "sql-formatter",
   "html-to-markdown-converter",
-  "html-to-pdf-converter"
+  "html-to-pdf-converter",
+  "markdown-to-html-converter",
+  "markdown-to-pdf-converter",
+  "diff-checker",
+  "markdown-editor",
+  "string-utilities"
 ];
 
 export interface ToolDefinition {
@@ -203,6 +208,20 @@ export const tools: ToolDefinition[] = [
     icon: FileDigit,
     category: "converters"
   },
+  {
+    title: "Markdown to HTML",
+    description: "Convert Markdown to HTML",
+    path: "/tools/markdown-to-html-converter",
+    icon: FileCode,
+    category: "converters"
+  },
+  {
+    title: "Markdown to PDF",
+    description: "Convert Markdown to PDF",
+    path: "/tools/markdown-to-pdf-converter",
+    icon: FileDigit,
+    category: "converters"
+  },
 
   // Utilities
   {
@@ -304,13 +323,24 @@ export function ToolGrid({ category = "all", searchQuery = "" }: ToolGridProps) 
     return passesCategory && passesSearch;
   });
 
+  // Sort tools: implemented first, then not implemented
+  const sortedTools = [...filteredTools].sort((a, b) => {
+    const toolIdA = a.path.split('/tools/')[1];
+    const toolIdB = b.path.split('/tools/')[1];
+    const isImplementedA = IMPLEMENTED_TOOLS.includes(toolIdA);
+    const isImplementedB = IMPLEMENTED_TOOLS.includes(toolIdB);
+
+    if (isImplementedA === isImplementedB) return 0;
+    return isImplementedA ? -1 : 1;
+  });
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {filteredTools.map((tool, index) => {
+      {sortedTools.map((tool, index) => {
         // Check if the tool is implemented
         const toolId = tool.path.split('/tools/')[1];
         const isImplemented = IMPLEMENTED_TOOLS.includes(toolId);
-        
+
         return (
           <div key={tool.path} className="opacity-0 animate-fade-in" style={{ animationDelay: `${index * 50}ms`, animationFillMode: 'forwards' }}>
             <ToolCard
