@@ -16,10 +16,12 @@ export function Header() {
           </div>
         </div>
         <div className="flex items-center gap-2 sm:gap-4">
-          <Button variant="outline" size="icon">
-            <Github className="h-4 w-4 sm:h-5 sm:w-5" />
-            <span className="sr-only">GitHub</span>
-          </Button>
+          <a href="https://github.com/sapieonic/sleek-utility-hub" target="_blank" rel="noopener noreferrer">
+            <Button variant="outline" size="icon">
+              <Github className="h-4 w-4 sm:h-5 sm:w-5" />
+              <span className="sr-only">GitHub</span>
+            </Button>
+          </a>
           <ThemeToggle />
         </div>
       </div>

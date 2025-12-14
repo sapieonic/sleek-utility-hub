@@ -19,6 +19,8 @@ import JsFormatter from "./pages/tools/JsFormatter";
 import HtmlFormatter from "./pages/tools/HtmlFormatter";
 import CssFormatter from "./pages/tools/CssFormatter";
 import SqlFormatter from "./pages/tools/SqlFormatter";
+import HtmlToMarkdown from "./pages/tools/HtmlToMarkdown";
+import HtmlToPdf from "./pages/tools/HtmlToPdf";
 import NotFound from "./pages/NotFound";
 
 const App = () => {
@@ -49,6 +51,8 @@ const App = () => {
             <Route path="/tools/html-formatter" element={<HtmlFormatter />} />
             <Route path="/tools/css-formatter" element={<CssFormatter />} />
             <Route path="/tools/sql-formatter" element={<SqlFormatter />} />
+            <Route path="/tools/html-to-markdown-converter" element={<HtmlToMarkdown />} />
+            <Route path="/tools/html-to-pdf-converter" element={<HtmlToPdf />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
