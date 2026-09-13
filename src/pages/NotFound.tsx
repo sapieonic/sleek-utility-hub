@@ -1,44 +1,32 @@
+import { Link, useLocation } from "react-router-dom";
+import { Icon } from "@/components/workspace/Icon";
+import { Mono } from "@/components/workspace/Chrome";
 
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { Button } from "@/components/ui/button";
-import { AlertCircle, Home } from "lucide-react";
-
-const NotFound = () => {
+export default function NotFound() {
   const location = useLocation();
 
-  useEffect(() => {
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      location.pathname
-    );
-  }, [location.pathname]);
-
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-      <main className="flex-1 flex items-center justify-center">
-        <div className="text-center">
-          <div className="flex justify-center mb-4">
-            <div className="h-24 w-24 rounded-full bg-red-100 dark:bg-red-900/20 flex items-center justify-center">
-              <AlertCircle className="h-12 w-12 text-red-600 dark:text-red-400" />
-            </div>
-          </div>
-          <h1 className="text-4xl font-bold mb-4">404</h1>
-          <p className="text-xl text-muted-foreground mb-8">Oops! We couldn't find that page.</p>
-          <Button asChild>
-            <a href="/" className="flex items-center gap-2">
-              <Home className="h-4 w-4" />
-              Back to Home
-            </a>
-          </Button>
-        </div>
-      </main>
-      <Footer />
+    <div
+      className="flex h-full flex-col items-center justify-center px-6"
+      style={{ background: "var(--wk-bg)", color: "var(--wk-text)" }}
+    >
+      <span className="mb-5" style={{ color: "var(--wk-accent)" }}>
+        <Icon name="mark" size={34} />
+      </span>
+      <h1 className="mb-2 text-[20px] font-semibold">No tool lives at that address.</h1>
+      <p className="mb-1 max-w-[440px] text-center text-[13px] leading-[20px]" style={{ color: "var(--wk-dim)" }}>
+        Every tool now runs inside one workspace, so there is a single page to go back to.
+      </p>
+      <Mono size={11} className="mb-6">
+        {location.pathname}
+      </Mono>
+      <Link
+        to="/"
+        className="wk-focus flex h-[32px] items-center gap-2 rounded-md px-4 text-[13px] font-semibold"
+        style={{ background: "var(--wk-accent)", color: "var(--wk-accent-ink)" }}
+      >
+        Open the workspace
+      </Link>
     </div>
   );
-};
-
-export default NotFound;
+}

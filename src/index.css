@@ -1,69 +1,123 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * UtilityHub — "machined utility"
+ * Cool-neutral graphite. One blue that only means ACTION, one green that only
+ * means VALID. All accents sit at the same oklch lightness/chroma so nothing
+ * shouts louder than anything else. Radii are pulled in to 6px so panels read
+ * as instrument rather than card.
+ */
+
 @layer base {
   :root {
-    --background: 220 33% 98%;
-    --foreground: 222.2 84% 4.9%;
+    /* --- workspace ramp (hex, used directly by workspace chrome) --- */
+    --wk-bg: #f9fafc;
+    --wk-panel: #ffffff;
+    --wk-raised: #f0f3f6;
+    --wk-line: #dce0e5;
+    --wk-line-strong: #c6cbd2;
+    --wk-text: #191f25;
+    --wk-dim: #5e646b;
+    --wk-faint: #666c73;
+    --wk-line-control: #8b929a;
 
+    --wk-accent: #005f9e;
+    --wk-accent-dim: #2f7fb8;
+    --wk-accent-wash: #e4f2fe;
+    --wk-accent-ink: #ffffff;
+
+    --wk-ok: #007f43;
+    --wk-ok-wash: #e2f5eb;
+    --wk-warn: #b46e00;
+    --wk-warn-wash: #fdf0dc;
+    --wk-err: #c2272d;
+    --wk-err-wash: #fdeaea;
+
+    --wk-syn-key: #0a6296;
+    --wk-syn-str: #0f7a46;
+    --wk-syn-num: #9a5b00;
+    --wk-syn-bool: #7038c4;
+    --wk-syn-punct: #666c73;
+
+    /* --- shadcn surface (kept so dialogs/tooltips/toasts inherit) --- */
+    --background: 220 33.3% 98.2%;
+    --foreground: 210 19.4% 12.2%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 210 19.4% 12.2%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 210 19.4% 12.2%;
+    --primary: 204 100% 38.2%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 25% 95.3%;
+    --secondary-foreground: 210 19.4% 12.2%;
+    --muted: 210 25% 95.3%;
+    --muted-foreground: 212.3 6.5% 39.4%;
+    --accent: 210 25% 95.3%;
+    --accent-foreground: 210 19.4% 12.2%;
+    --destructive: 357.7 66.5% 45.7%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 213.3 14.8% 88%;
+    --input: 213.3 14.8% 88%;
+    --ring: 204 100% 38.2%;
 
-    --primary: 221 83% 53%;
-    --primary-foreground: 210 40% 98%;
+    --wk-scrim: rgb(0 0 0 / 0.45);
+    --wk-shadow: rgb(0 0 0 / 0.18);
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221 83% 53%;
-
-    --radius: 0.75rem;
+    --radius: 0.375rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --wk-bg: #0d1013;
+    --wk-panel: #14171b;
+    --wk-raised: #1d2125;
+    --wk-line: #2a2e34;
+    --wk-line-strong: #3c4249;
+    --wk-text: #ebedf0;
+    --wk-dim: #a0a5ab;
+    --wk-faint: #8b9096;
+    --wk-line-control: #5f656d;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --wk-accent: #3faff3;
+    --wk-accent-dim: #297cae;
+    --wk-accent-wash: #173142;
+    --wk-accent-ink: #0d1013;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --wk-ok: #4ebe7d;
+    --wk-ok-wash: #1a3424;
+    --wk-warn: #e6ac3d;
+    --wk-warn-wash: #403012;
+    --wk-err: #ef6661;
+    --wk-err-wash: #4a2321;
 
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --wk-syn-key: #8acdfc;
+    --wk-syn-str: #6dc88f;
+    --wk-syn-num: #e6b55d;
+    --wk-syn-bool: #be9df7;
+    --wk-syn-punct: #8b9096;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    --background: 210 18.8% 6.3%;
+    --foreground: 216 14.3% 93.1%;
+    --card: 214.3 14.9% 9.2%;
+    --card-foreground: 216 14.3% 93.1%;
+    --popover: 214.3 14.9% 9.2%;
+    --popover-foreground: 216 14.3% 93.1%;
+    --primary: 202.7 88.2% 60%;
+    --primary-foreground: 210 18.8% 6.3%;
+    --secondary: 210 12.1% 12.9%;
+    --secondary-foreground: 216 14.3% 93.1%;
+    --muted: 210 12.1% 12.9%;
+    --muted-foreground: 212.7 6.1% 64.9%;
+    --accent: 210 12.1% 12.9%;
+    --accent-foreground: 216 14.3% 93.1%;
+    --destructive: 2.1 81.6% 65.9%;
+    --destructive-foreground: 216 14.3% 93.1%;
+    --border: 216 10.6% 18.4%;
+    --input: 216 10.6% 18.4%;
+    --ring: 202.6 61.9% 42.2%;
+    --wk-scrim: rgb(0 0 0 / 0.62);
+    --wk-shadow: rgb(0 0 0 / 0.45);
   }
 }
 
@@ -72,49 +126,120 @@
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground;
-  }
-  
-  /* Add responsive font sizing */
   html {
     font-size: 16px;
   }
-  
-  @media (max-width: 640px) {
-    html {
-      font-size: 15px;
-    }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overscroll-behavior: none;
   }
-  
-  @media (max-width: 480px) {
-    html {
-      font-size: 14px;
-    }
+
+  /* The workspace owns the viewport; only its inner panes scroll. */
+  html, body, #root {
+    height: 100%;
   }
 }
 
-/* Update tool card for better responsiveness */
-.tool-card {
-  @apply border rounded-xl shadow-sm transition-all duration-300 ease-in-out hover:shadow-md hover:scale-[1.02] overflow-hidden bg-card text-card-foreground;
+@layer components {
+  .wk-kbd {
+    font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10px;
+    line-height: 1;
+    color: var(--wk-dim);
+    background: var(--wk-raised);
+    border: 1px solid var(--wk-line);
+    border-bottom-color: var(--wk-line-strong);
+    border-radius: 4px;
+    padding: 3px 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+  }
+
+  .wk-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--wk-faint);
+  }
+
+  /* 2px ring, offset from the surface — on every focusable thing. */
+  .wk-focus:focus-visible {
+    outline: 2px solid var(--wk-accent-dim);
+    outline-offset: 2px;
+    border-radius: inherit;
+  }
+}
+
+/* --- CodeMirror: make it look like our editor, not like its own product --- */
+
+/* react-codemirror wraps the editor in an unstyled .cm-theme-* div. Without a
+   height it grows to fit the document, .cm-editor's height:100% then resolves
+   against THAT, and .cm-scroller ends up exactly as tall as its content — so a
+   long result simply could not be scrolled. */
+.cm-theme,
+.cm-theme-light,
+.cm-theme-dark {
   height: 100%;
-  display: flex;
-  flex-direction: column;
+  min-height: 0;
 }
 
-.tool-card > div {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+.cm-editor {
+  height: 100%;
+  background: transparent !important;
+  font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+.cm-editor.cm-focused {
+  outline: none !important;
+}
+.cm-scroller {
+  font-family: inherit !important;
+  font-size: 12.5px;
+  line-height: 20px;
+}
+.cm-gutters {
+  background: transparent !important;
+  border-right: none !important;
+  color: var(--wk-faint);
+  opacity: 0.75;
+}
+.cm-activeLine,
+.cm-activeLineGutter {
+  background: color-mix(in srgb, var(--wk-line) 55%, transparent) !important;
+}
+.cm-content {
+  caret-color: var(--wk-accent);
+}
+.cm-cursor,
+.cm-dropCursor {
+  border-left-color: var(--wk-accent) !important;
+}
+.cm-selectionBackground,
+.cm-editor .cm-selectionBackground,
+.cm-editor.cm-focused .cm-selectionBackground {
+  background: var(--wk-accent-wash) !important;
 }
 
-.tool-icon {
-  @apply text-primary h-4 w-4 sm:h-5 sm:w-5;
+/* Thin, unobtrusive scrollbars — this is a dense tool. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--wk-line-strong) transparent;
 }
-
-/* Make HoverCard content responsive */
-@media (max-width: 640px) {
-  .hover-card-content {
-    max-width: calc(100vw - 2rem) !important;
-  }
+*::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--wk-line-strong);
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: content-box;
 }
